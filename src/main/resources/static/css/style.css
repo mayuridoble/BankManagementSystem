@@ -1,0 +1,598 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Container Styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Login & Register Boxes */
+.login-box, .register-box, .error-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+}
+
+.login-box h1, .register-box h1 {
+    text-align: center;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.login-box h2, .register-box h2 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102,126,234,0.3);
+}
+
+.form-group .error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+}
+
+.btn-success {
+    background: #27ae60;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #229954;
+}
+
+.btn-warning {
+    background: #f39c12;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #e67e22;
+}
+
+/* Alert Messages */
+.alert {
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Navigation Bar */
+.navbar {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand h1 {
+    color: #667eea;
+    font-size: 24px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links span {
+    color: #555;
+    font-weight: 500;
+}
+
+.nav-links a {
+    color: #555;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover {
+    background: #f0f0f0;
+    color: #667eea;
+}
+
+.nav-links a.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+/* Main Content */
+.main-content {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Dashboard Styles */
+.welcome-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.welcome-card h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-card h3 {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 15px;
+}
+
+.account-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.upi-id {
+    font-size: 18px;
+    color: #764ba2;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.quick-actions {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.quick-actions h3 {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    flex: 1;
+    text-align: center;
+}
+
+/* Account Details */
+.account-details {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.account-details h2 {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.details-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row strong {
+    color: #555;
+}
+
+.detail-row .balance {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.transaction-forms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.deposit-form, .withdraw-form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.deposit-form h3, .withdraw-form h3 {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Transfer Container */
+.transfer-container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.transfer-container h2 {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.transfer-card {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.from-account-info {
+    background: #e8f0fe;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.from-account-info h3 {
+    margin-bottom: 10px;
+    color: #667eea;
+}
+
+.from-account-info p {
+    margin: 5px 0;
+}
+
+/* Transaction History */
+.history-container {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.history-container h2 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.transaction-table {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.transaction-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transaction-table th {
+    background: #667eea;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.transaction-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-table tr:hover {
+    background: #f8f9fa;
+}
+
+.type-deposit {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.type-withdraw {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.type-transfer {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.type-upi {
+    color: #9b59b6;
+    font-weight: bold;
+}
+
+.amount {
+    font-weight: bold;
+    color: #333;
+}
+
+.no-transactions {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+    font-size: 16px;
+}
+
+/* UPI Container */
+.upi-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.qr-section, .transfer-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.qr-section h2, .transfer-section h2 {
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center;
+}
+
+.qr-code {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qr-code img {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.upi-info {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.upi-info p {
+    margin: 8px 0;
+}
+
+.upi-info strong {
+    color: #667eea;
+}
+
+/* Error Page */
+.error-box {
+    text-align: center;
+}
+
+.error-box h1 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+.error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.error-actions .btn {
+    width: auto;
+}
+
+/* Register Link */
+.register-link, .login-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.register-link a, .login-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .transaction-forms {
+        grid-template-columns: 1fr;
+    }
+    
+    .upi-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .login-box, .register-box {
+        margin: 20px;
+        padding: 30px;
+    }
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #667eea;
+    animation: spin 1s ease-in-out infinite;
+}
+
+/* Print Styles */
+@media print {
+    .navbar, .btn, .action-buttons {
+        display: none;
+    }
+    
+    .main-content {
+        padding: 0;
+    }
+    
+    .stat-card, .account-details, .history-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

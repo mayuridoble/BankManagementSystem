@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - Bank Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Bank Management System</h1>
+            </div>
+            <div class="nav-links">
+                <span>Welcome, <span th:text="${user.fullName}"></span></span>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/account/details" class="active">Account</a>
+                <a href="/transfer">Transfer</a>
+                <a href="/history">History</a>
+                <a href="/upi">UPI & QR</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}"></span>
+            </div>
+            
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}"></span>
+            </div>
+            
+            <div class="account-details">
+                <h2>Account Details</h2>
+                <div class="details-card">
+                    <div class="detail-row">
+                        <strong>Account Holder:</strong>
+                        <span th:text="${user.fullName}"></span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Account Number:</strong>
+                        <span th:text="${account.accountNumber}"></span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Current Balance:</strong>
+                        <span class="balance">₹ <span th:text="${account.balance}"></span></span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Account Created:</strong>
+                        <span th:text="${account.createdAt}"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="transaction-forms">
+                <div class="deposit-form">
+                    <h3>Deposit Money</h3>
+                    <form th:action="@{/account/deposit}" th:object="${depositForm}" method="post">
+                        <input type="hidden" th:field="*{accountNumber}" th:value="${account.accountNumber}">
+                        <div class="form-group">
+                            <label for="depositAmount">Amount:</label>
+                            <input type="number" id="depositAmount" th:field="*{amount}" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="depositDescription">Description:</label>
+                            <input type="text" id="depositDescription" th:field="*{description}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Deposit</button>
+                    </form>
+                </div>
+                
+                <div class="withdraw-form">
+                    <h3>Withdraw Money</h3>
+                    <form th:action="@{/account/withdraw}" th:object="${withdrawForm}" method="post">
+                        <input type="hidden" th:field="*{accountNumber}" th:value="${account.accountNumber}">
+                        <div class="form-group">
+                            <label for="withdrawAmount">Amount:</label>
+                            <input type="number" id="withdrawAmount" th:field="*{amount}" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="withdrawDescription">Description:</label>
+                            <input type="text" id="withdrawDescription" th:field="*{description}">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Withdraw</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

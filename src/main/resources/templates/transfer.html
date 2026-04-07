@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money - Bank Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Bank Management System</h1>
+            </div>
+            <div class="nav-links">
+                <span>Welcome, <span th:text="${user.fullName}"></span></span>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/account/details">Account</a>
+                <a href="/transfer" class="active">Transfer</a>
+                <a href="/history">History</a>
+                <a href="/upi">UPI & QR</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}"></span>
+            </div>
+            
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}"></span>
+            </div>
+            
+            <div class="transfer-container">
+                <h2>Transfer Money</h2>
+                <div class="transfer-card">
+                    <div class="from-account-info">
+                        <h3>From Account</h3>
+                        <p><strong>Account Number:</strong> <span th:text="${fromAccount.accountNumber}"></span></p>
+                        <p><strong>Available Balance:</strong> ₹ <span th:text="${fromAccount.balance}"></span></p>
+                    </div>
+                    
+                    <form action="/transfer" method="post">
+                        <input type="hidden" name="fromAccountNumber" th:value="${fromAccount.accountNumber}">
+                        
+                        <div class="form-group">
+                            <label for="toAccountNumber">To Account Number:</label>
+                            <input type="text" id="toAccountNumber" name="toAccountNumber" required placeholder="Enter destination account number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="amount">Amount (₹):</label>
+                            <input type="number" id="amount" name="amount" step="0.01" required placeholder="Enter amount to transfer">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Description (Optional):</label>
+                            <input type="text" id="description" name="description" placeholder="Enter transfer description">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Transfer Money</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bank Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Bank Management System</h1>
+            </div>
+            <div class="nav-links">
+                <span>Welcome, <span th:text="${user.fullName}"></span></span>
+                <a href="/dashboard" class="active">Dashboard</a>
+                <a href="/account/details">Account</a>
+                <a href="/transfer">Transfer</a>
+                <a href="/history">History</a>
+                <a href="/upi">UPI & QR</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}"></span>
+            </div>
+            
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}"></span>
+            </div>
+            
+            <div class="welcome-card">
+                <h2>Welcome, <span th:text="${user.fullName}"></span>!</h2>
+                <p>Your account is ready for transactions.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Account Balance</h3>
+                    <div class="balance-amount">₹ <span th:text="${balance}"></span></div>
+                    <a href="/account/details" class="btn btn-secondary">View Details</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Account Number</h3>
+                    <div class="account-number" th:text="${account.accountNumber}"></div>
+                    <p>Your primary account</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>UPI ID</h3>
+                    <div class="upi-id" th:text="${upiId.upiHandle}"></div>
+                    <a href="/upi" class="btn btn-secondary">Manage UPI</a>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <div class="action-buttons">
+                    <a href="/transfer" class="btn btn-primary">Send Money</a>
+                    <a href="/upi" class="btn btn-primary">UPI Payment</a>
+                    <a href="/history" class="btn btn-secondary">View History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

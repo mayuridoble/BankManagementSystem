@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - Bank Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Bank Management System</h1>
+            </div>
+            <div class="nav-links">
+                <span>Welcome, <span th:text="${user.fullName}"></span></span>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/account/details">Account</a>
+                <a href="/transfer">Transfer</a>
+                <a href="/history" class="active">History</a>
+                <a href="/upi">UPI & QR</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div class="history-container">
+                <h2>Transaction History</h2>
+                <p>Account Number: <strong th:text="${account.accountNumber}"></strong></p>
+                
+                <div th:if="${transactions.empty}" class="no-transactions">
+                    <p>No transactions found.</p>
+                </div>
+                
+                <div th:unless="${transactions.empty}" class="transaction-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Type</th>
+                                <th>From Account</th>
+                                <th>To Account</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="transaction : ${transactions}">
+                                <td th:text="${transaction.timestamp}"></td>
+                                <td>
+                                    <span th:class="${transaction.type == 'DEPOSIT' ? 'type-deposit' : 
+                                                   (transaction.type == 'WITHDRAWAL' ? 'type-withdraw' : 
+                                                   (transaction.type == 'TRANSFER' ? 'type-transfer' : 'type-upi'))}"
+                                          th:text="${transaction.type}"></span>
+                                </td>
+                                <td>
+                                    <span th:if="${transaction.fromAccount != null}" 
+                                          th:text="${transaction.fromAccount.accountNumber}"></span>
+                                    <span th:unless="${transaction.fromAccount != null}">-</span>
+                                </td>
+                                <td>
+                                    <span th:if="${transaction.toAccount != null}" 
+                                          th:text="${transaction.toAccount.accountNumber}"></span>
+                                    <span th:unless="${transaction.toAccount != null}">-</span>
+                                </td>
+                                <td class="amount" th:text="'₹ ' + ${transaction.amount}"></td>
+                                <td th:text="${transaction.description != null ? transaction.description : '-'}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

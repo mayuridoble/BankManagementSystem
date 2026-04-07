@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI & QR - Bank Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>Bank Management System</h1>
+            </div>
+            <div class="nav-links">
+                <span>Welcome, <span th:text="${user.fullName}"></span></span>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/account/details">Account</a>
+                <a href="/transfer">Transfer</a>
+                <a href="/history">History</a>
+                <a href="/upi" class="active">UPI & QR</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div th:if="${success}" class="alert alert-success">
+                <span th:text="${success}"></span>
+            </div>
+            
+            <div th:if="${error}" class="alert alert-error">
+                <span th:text="${error}"></span>
+            </div>
+            
+            <div class="upi-container">
+                <div class="qr-section">
+                    <h2>Your QR Code</h2>
+                    <div class="qr-code">
+                        <img th:src="@{'/upi/qrcode/' + ${upiId.upiHandle}}" alt="QR Code" width="250" height="250">
+                    </div>
+                    <div class="upi-info">
+                        <p><strong>Your UPI ID:</strong> <span th:text="${upiId.upiHandle}"></span></p>
+                        <p>Share this QR code to receive payments via UPI</p>
+                    </div>
+                </div>
+                
+                <div class="transfer-section">
+                    <h2>Send Money via UPI</h2>
+                    <form th:action="@{/upi/transfer}" th:object="${upiTransferForm}" method="post">
+                        <div class="form-group">
+                            <label for="fromUpiHandle">From UPI ID:</label>
+                            <input type="text" id="fromUpiHandle" th:field="*{fromUpiHandle}" 
+                                   th:value="${upiId.upiHandle}" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="toUpiHandle">To UPI ID:</label>
+                            <input type="text" id="toUpiHandle" th:field="*{toUpiHandle}" 
+                                   required placeholder="Enter receiver's UPI ID">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="upiAmount">Amount (₹):</label>
+                            <input type="number" id="upiAmount" th:field="*{amount}" 
+                                   step="0.01" required placeholder="Enter amount to send">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="upiDescription">Description:</label>
+                            <input type="text" id="upiDescription" th:field="*{description}" 
+                                   placeholder="Enter payment description">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send via UPI</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
